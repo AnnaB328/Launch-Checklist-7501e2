@@ -35,7 +35,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     const cargo = document.getElementById("cargoStatus");
     const pilotStatus = document.getElementById("pilotStatus");
     const copilotStatus = document.getElementById("copilotStatus");
-     const launchStatus = document.getElementById("launchStatus");
+    const launchStatus = document.getElementById("launchStatus");
 
   if (!pilot || !copilot || !fuelLevel || !cargoLevel) {
     alert("All fields are required!");
@@ -74,13 +74,20 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 async function myFetch() {
     let planetsReturned;
 
-    planetsReturned = await fetch().then( function(response) {
-        });
+    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+        if (!response.status >= 400) {
+            throw new Error ('Error');
+        } else {
+            return response.json();
+        }
+    });
 
-    return planetsReturned;
+        return planetsReturned;
 }
 
 function pickPlanet(planets) {
+    let index = Math.floor(Math.random() * planets.length);
+    return planets[index];
 }
 
 module.exports.addDestinationInfo = addDestinationInfo;
