@@ -39,9 +39,13 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
   if (!pilot || !copilot || !fuelLevel || !cargoLevel) {
     alert("All fields are required!");
+  
   } else if (isNaN(fuelLevel) || isNaN(cargoLevel)) {
+  
     alert("Make sure to enter valid information for each field!");
+  
   } else {
+    
     list.style.visibility = "visible";
     pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
     copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
@@ -51,16 +55,19 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
       cargo.innerHTML = "Cargo mass low enough for launch";
       launchStatus.innerHTML = "Shuttle Not Ready for Launch";
       launchStatus.style.color = "#C7254E";
+    
     } else if (fuelLevel >= 10000 && cargoLevel > 10000) {
       fuel.innerHTML = "Fuel level high enough for launch";
       cargo.innerHTML = "Cargo mass too heavy for launch";
       launchStatus.innerHTML = "Shuttle Not Ready for Launch";
       launchStatus.style.color = "#C7254E";
+   
     } else if (fuelLevel < 10000 && cargoLevel > 10000) {
       fuel.innerHTML = "Fuel level too low for launch";
       cargo.innerHTML = "Cargo mass too heavy for launch";
       launchStatus.innerHTML = "Shuttle Not Ready for Launch";
       launchStatus.style.color = "#C7254E";
+    
     } else {
       fuel.innerHTML = "Fuel level high enough for launch";
       cargo.innerHTML = "Cargo mass low enough for launch";
@@ -76,7 +83,7 @@ async function myFetch() {
 
     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
         if (!response.status >= 400) {
-            throw new Error ('Error');
+            throw new Error ('Cannot fetch data');
         } else {
             return response.json();
         }
