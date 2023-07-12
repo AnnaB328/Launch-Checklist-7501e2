@@ -31,24 +31,19 @@ function validateInput(testInput) {
 
 
 //first part of function ties the what is referenced in hmtl here
-  function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
+function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     const fuel = document.getElementById("fuelStatus");
     const cargo = document.getElementById("cargoStatus");
     const pilotStatus = document.getElementById("pilotStatus");
     const copilotStatus = document.getElementById("copilotStatus");
     const launchStatus = document.getElementById("launchStatus");
 
-  //if these fields are blank an alert is shown saying they cannot be blank
-    if (!pilot || !copilot || !fuelLevel || !cargoLevel) {
-    alert("All fields are required!");
-  
-  //if numbers are not in these fields it will produce an alert saying it is not valid
-  } else if (isNaN(fuelLevel) || isNaN(cargoLevel)) {
-  
-    alert("Make sure to enter valid information for each field!");
-  
-  } else {
-    
+  //if these fields are empty an alert is shown saying they cannot be blank. Next line makes sure that strings are entered for pilot and copilot and numbers are entered for fuelLevel and cargoLevel
+  if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty") {
+    alert("No empty fields!");
+} else if (validateInput(pilot) === "Is a Number" || validateInput(copilot) === "Is a Number" || validateInput(fuelLevel) === "Not a Number" || validateInput(cargoLevel) === "Not a Number" ) {
+    alert("Make sure to enter appropriate value types for each field");
+    } else {
     //this creates a visible message at bottom of sceen depending on information typed in
     list.style.visibility = "visible";
     pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
