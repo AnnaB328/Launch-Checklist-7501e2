@@ -1,6 +1,7 @@
 // Write your helper functions here!
 require('isomorphic-fetch');
 
+//Takes multiple paramaters and formats how we want to see it on the webpage. This makes up the Mission Target portion of website and uses information pulled with json.
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
     const missionTarget = document.getElementById('missionTarget');
     missionTarget.innerHTML = `
