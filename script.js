@@ -1,4 +1,7 @@
 // Write your JavaScript code here!
+
+//This starts executing functions as the webpage finishes loading. Fetch is included to grab the planet data from handler page. It is then stored in listedPlanets. listedPlanetResponse is a promise that ultimately logs listedPlanets to page. 
+//A planet is then randomly selected using pickPlanet() and it is formated on the page using the addDestinationInfo function.
 window.addEventListener("load", function() {
   
     let listedPlanets;
@@ -14,10 +17,14 @@ window.addEventListener("load", function() {
        addDestinationInfo(document, planet.name, planet.diameter, planet.star, planet.distance, planet.moons, planet.image);
      });
     
-    let list = document.getElementById("faultyItems");
+    
+    //This portion of codes takes the "faultyItem element" and hides it if any are present. Acts as container for those items.
+     let list = document.getElementById("faultyItems");
     list.style.visibility = "hidden";
     let form = document.querySelector("form");
  
+    
+    //This event listener allows us to submit all the information typed into each field into each portion of form. This labels each section. The formsubmission takes the input and will update the live webpage. 
     form.addEventListener("submit", function(event) {
         event.preventDefault();
         let pilotInput = document.querySelector("input[name=pilotName]");
